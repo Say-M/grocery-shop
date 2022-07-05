@@ -37,7 +37,6 @@ void menu() {
 
 void addProduct() {
     int record = 0;
-    char name[20] = "products.txt";
     fp = fopen("products.txt", "a+");
     fseek(fp, 0, SEEK_END);
     record = ftell(fp)/sizeof(product);
@@ -261,9 +260,11 @@ void deleteProduct() {
     fclose(fp);
     fclose(ft);
     if(record == 0) printf("No products available with the id of %d for updating ...\n", id);
-    else printf("A product with %d id deleted", id);
-    remove("products.txt");
-    rename("temp.txt", "products.txt");
+    else {
+        printf("A product with %d id deleted", id);
+        remove("products.txt");
+        rename("temp.txt", "products.txt");
+    }
 }
 
 int main()
